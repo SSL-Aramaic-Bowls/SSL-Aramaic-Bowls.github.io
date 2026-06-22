@@ -345,4 +345,242 @@
 <body>
 
     <header>
-        <h1>Beyond Labels: Visual In
+        <h1>Beyond Labels: Visual Invariance in Self-Supervised Learning for Aramaic Bowls</h1>
+        
+        <div class="authors">
+            <span>Nour Atamni<sup>1, *</sup></span>
+            <span>Boraq Madi<sup>2, *</sup></span>
+            <span>Islam Amar<sup>1</sup></span>
+            <span>Raid Saabni<sup>2</sup></span>
+            <span>Jihad El-Sana<sup>1</sup></span>
+        </div>
+        
+        <div class="affiliations">
+            <p><sup>1</sup> Ben-Gurion University of the Negev, Beer-Sheva, Israel</p>
+            <p><sup>2</sup> The Academic College of Tel Aviv-Yaffo, Israel</p>
+            <p class="equal-contrib"><sup>*</sup> Equal contribution</p>
+        </div>
+
+        <div class="emails">
+            <a href="mailto:atamni@post.bgu.ac.il">atamni@post.bgu.ac.il</a> <span class="separator">|</span>
+            <a href="mailto:boraqma@mta.ac.il">boraqma@mta.ac.il</a> <span class="separator">|</span>
+            <a href="mailto:islamaym@post.bgu.ac.il">islamaym@post.bgu.ac.il</a> <span class="separator">|</span>
+            <a href="mailto:raidsa@mta.ac.il">raidsa@mta.ac.il</a> <span class="separator">|</span>
+            <a href="mailto:jelsana@bgu.ac.il">jelsana@bgu.ac.il</a>
+        </div>
+
+        <a href="https://zenodo.org/" target="_blank" class="btn">Dataset on Zenodo</a>
+    </header>
+
+    <div class="container">
+        
+        <div class="card abstract-card">
+            <h2>Abstract</h2>
+            <p>Aramaic incantation bowls from Late Antiquity present a highly challenging visual domain characterized by severe material degradation, irregular layouts, and ambiguous letter morphology. Under such conditions, supervised learning is limited by the scarcity and instability of reliable paleographic labels. Self-supervised learning (SSL) offers an alternative to learning visual representations without explicit annotations; however, its effectiveness depends critically on the invariance assumptions encoded by data augmentations.</p>
+            <p>In this work, we systematically evaluate seven SSL frameworks on a curated dataset of segmented Aramaic incantation bowl letters. We formulate augmentation strategies as explicit hypotheses about visual identity: H1 (appearance-based transformations), H2 (structure-aware modifications), H3 (historically motivated degradations). Our results show that augmentation design substantially influences representation quality. In particular, structural and historically motivated hypotheses (H2, H3) consistently outperform appearance-only transformations (H1).</p>
+        </div>
+
+        <div class="card">
+            <h2>1. Introduction</h2>
+            <p>Aramaic incantation bowls from Late Antiquity contain dense handwritten inscriptions arranged in circular and spiral layouts over curved clay surfaces. These artifacts exhibit extreme variability in letter morphology, irregular spacing, non-uniform backgrounds, and substantial material degradation.</p>
+            <p>The primary focus of this research is the <strong>spatial-cultural mapping</strong> of these historical artifacts. By analyzing the structural invariances and geometric consistency of the letter forms without relying on manual ground-truth, we aim to map diverse regional writing conventions and ritual practices. This approach ensures that representations are securely anchored in authentic historical and spatial variability, mapping the cultural spread of scribal traditions.</p>
+        </div>
+
+        <div class="card">
+            <h2>2. Dataset and Extraction Pipeline</h2>
+            <p>The dataset is derived from a collection of 32 Aramaic incantation bowls dated to Late Antiquity (4th-7th centuries CE), comprising approximately 8,600 extracted letter-like units. Letter instances are extracted through an automatic multi-stage pipeline designed to operate consistently across bowls with diverse preservation conditions.</p>
+            
+            <div class="image-wrapper">
+                <img src="images/pipeline_overview2.jpg" alt="High-level overview of the extraction pipeline">
+                <div class="caption">Figure 1: Overview of the automated extraction pipeline mapping original artifacts to isolated glyphs.</div>
+            </div>
+
+            <h3>Step-by-Step Progression</h3>
+            <div class="grid-4">
+                <div class="grid-item">
+                    <img src="images/original_sample.png" alt="Original bowl sample">
+                    <h4>1. Original Image</h4>
+                    <p class="label">Raw artifact capture</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/Text-Line.png" alt="Text line trajectories">
+                    <h4>2. Localization</h4>
+                    <p class="label">Text-line trajectories</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/detections_letetrs.png" alt="Letter bounding boxes">
+                    <h4>3. YOLOv12</h4>
+                    <p class="label">Bounding box detection</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/letters_segmentations.png" alt="Pixel-level segmentation masks">
+                    <h4>4. Segmentation</h4>
+                    <p class="label">SAM pixel-level masks</p>
+                </div>
+            </div>
+            
+            <ol>
+                <li><strong>Line Localization:</strong> Baseline annotations restrict the search space by defining text-line trajectories.</li>
+                <li><strong>YOLOv12 Detection:</strong> A domain-adapted object detection model identifies candidate letter bounding boxes.</li>
+                <li><strong>SAM Refinement:</strong> The Segment Anything Model (SAM) generates precise segmentation masks to isolate foreground strokes.</li>
+                <li><strong>Binary Letter Crops:</strong> Refined regions are cropped and converted into standardized binary patches to emphasize structural information.</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <h2>3. Augmentation Hypotheses</h2>
+            <p>We formalize data augmentations as explicit hypotheses regarding which visual properties can vary while preserving the underlying glyph form:</p>
+            <ul>
+                <li><strong>H1 (Appearance Invariance):</strong> Assumes letter identity remains stable under photometric and surface-level changes.</li>
+                <li><strong>H2 (Structural Invariance):</strong> Assumes identity is preserved despite geometric and stroke-level variations.</li>
+                <li><strong>H3 (Historical Variability):</strong> Assumes identity persists under historical degradation (e.g., ink erosion, partial occlusion).</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>4. Experimental Results</h2>
+            
+            <h3>Embedding Visualizations</h3>
+            <p>Visualizing the clustering behaviors across different models and hypotheses.</p>
+            
+            <div class="grid-3">
+                <div class="grid-item">
+                    <img src="images/H1_Barralow.png" alt="Barlow Twins H1">
+                    <p class="label">Barlow Twins - H1</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/H2_Barralow.png" alt="Barlow Twins H2">
+                    <p class="label">Barlow Twins - H2</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/H3_Barralow.png" alt="Barlow Twins H3">
+                    <p class="label">Barlow Twins - H3</p>
+                </div>
+
+                <div class="grid-item">
+                    <img src="images/H1_SWAV.png" alt="SwAV H1">
+                    <p class="label">SwAV - H1</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/H2_SWAV.png" alt="SwAV H2">
+                    <p class="label">SwAV - H2</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/H3_SWAV.png" alt="SwAV H3">
+                    <p class="label">SwAV - H3</p>
+                </div>
+
+                <div class="grid-item">
+                    <img src="images/H1_VicReg.png" alt="VICReg H1">
+                    <p class="label">VICReg - H1</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/H2_VicReg.png" alt="VICReg H2">
+                    <p class="label">VICReg - H2</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/H3_VicReg.png" alt="VICReg H3">
+                    <p class="label">VICReg - H3</p>
+                </div>
+            </div>
+
+            <h3>Classification Performance</h3>
+            <p>Representations were evaluated using K-Nearest Neighbors (KNN) and Linear Probing. Structural augmentation (H2) and simulated historical degradation (H3) consistently outperformed appearance-only enhancement (H1).</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Model</th>
+                            <th colspan="2">H1 (Appearance)</th>
+                            <th colspan="2">H2 (Structural)</th>
+                            <th colspan="2">H3 (Historical)</th>
+                        </tr>
+                        <tr>
+                            <th>KNN</th>
+                            <th>Linear</th>
+                            <th>KNN</th>
+                            <th>Linear</th>
+                            <th>KNN</th>
+                            <th>Linear</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SimSiam</td>
+                            <td>78.12</td>
+                            <td>74.89</td>
+                            <td>84.39</td>
+                            <td>84.33</td>
+                            <td>84.97</td>
+                            <td>83.67</td>
+                        </tr>
+                        <tr>
+                            <td>SwAV</td>
+                            <td>80.15</td>
+                            <td>77.67</td>
+                            <td class="highlight">88.09</td>
+                            <td>84.67</td>
+                            <td>86.91</td>
+                            <td>83.12</td>
+                        </tr>
+                        <tr>
+                            <td>VICReg</td>
+                            <td>81.23</td>
+                            <td>82.42</td>
+                            <td>86.21</td>
+                            <td>87.32</td>
+                            <td>87.10</td>
+                            <td class="highlight">89.05</td>
+                        </tr>
+                        <tr>
+                            <td>Barlow Twins</td>
+                            <td>79.06</td>
+                            <td>81.21</td>
+                            <td>82.11</td>
+                            <td>84.10</td>
+                            <td>84.10</td>
+                            <td>85.12</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="caption" style="text-align: center;">Table 1: Classification-based evaluation of self-supervised representations. SwAV and VICReg achieve the strongest overall performance under H2 and H3 hypotheses.</div>
+        </div>
+
+        <div class="card">
+            <h2>Citation</h2>
+            <p>If you find this dataset and research useful in your work, please consider citing it:</p>
+            
+            <div class="citation-box">
+                <button class="copy-btn" onclick="copyCitation()">Copy</button>
+                <pre id="bibtex-text"> Coming Soon !!</pre>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Nour Atamni, Boraq Madi, Islam Amar, Raid Saabni, Jihad El-Sana</p>
+    </footer>
+
+    <script>
+        function copyCitation() {
+            const textToCopy = document.getElementById('bibtex-text').innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.innerText = 'Copied!';
+                btn.style.backgroundColor = '#10b981'; // Green color for success
+                
+                setTimeout(() => {
+                    btn.innerText = 'Copy';
+                    btn.style.backgroundColor = 'var(--accent)'; // Revert to original color
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
+
+</body>
+</html>
