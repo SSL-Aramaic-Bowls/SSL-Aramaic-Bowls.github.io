@@ -19,9 +19,3 @@ The curated dataset is derived from authentic historical materials, presenting c
 * **Annotations:** Baseline annotations, YOLO bounding box detections, and SAM segmentation masks.
 
 *(See the GitHub Pages site for visual examples of preservation quality and dataset structure).*
-
-## ⚙️ Extraction Pipeline
-
-We utilize an automatic, multi-stage extraction pipeline to isolate letter instances consistently across diverse preservation conditions:
-
-1.
