@@ -117,6 +117,16 @@
             color: #475569;
         }
 
+        /* Button Layout Fixes */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Adds space between the buttons */
+            margin-top: 10px;
+            position: relative; /* Ensures it stays above the overlapping container */
+            z-index: 10;
+        }
+
         .btn {
             display: inline-block;
             background-color: var(--accent);
@@ -140,6 +150,7 @@
             max-width: 1100px;
             margin: -40px auto 40px auto;
             padding: 0 20px;
+            position: relative; /* Ensures proper rendering with the z-index fix above */
         }
 
         .card {
@@ -379,8 +390,10 @@
             <a href="mailto:jelsana@bgu.ac.il">jelsana@bgu.ac.il</a>
         </div>
         
-        <a href="https://ssl-aramaic-bowls.github.io/" target="_blank" class="btn">Paper</a>
-        <a href="https://ssl-aramaic-bowls.github.io/" target="_blank" class="btn">Dataset</a>
+        <div class="action-buttons">
+            <a href="https://ssl-aramaic-bowls.github.io/" target="_blank" class="btn">Paper</a>
+            <a href="https://ssl-aramaic-bowls.github.io/" target="_blank" class="btn">Dataset</a>
+        </div>
         
     </header>
 
