@@ -61,6 +61,16 @@
             margin: 0 12px;
         }
 
+        .authors a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .authors a:hover {
+            color: #93c5fd;
+        }
+
         .authors sup {
             color: #94a3b8;
             font-weight: 400;
@@ -348,11 +358,11 @@
         <h1>Beyond Labels: Visual Invariance in Self-Supervised Learning for Aramaic Bowls</h1>
         
         <div class="authors">
-            <span>Nour Atamni<sup>1, *</sup></span>
-            <span>Boraq Madi<sup>2, *</sup></span>
-            <span>Islam Amar<sup>1</sup></span>
-            <span>Raid Saabni<sup>2</sup></span>
-            <span>Jihad El-Sana<sup>1</sup></span>
+            <span><a href="https://orcid.org/0009-0003-4328-3549" target="_blank">Nour Atamni</a><sup>1, *</sup></span>
+            <span><a href="https://orcid.org/0000-0002-0940-5421" target="_blank">Boraq Madi</a><sup>2, *</sup></span>
+            <span><a href="https://orcid.org/0009-0004-1815-1234" target="_blank">Islam Amar</a><sup>1</sup></span>
+            <span><a href="https://orcid.org/0000-0001-8844-8675" target="_blank">Raid Saabni</a><sup>2</sup></span>
+            <span><a href="https://orcid.org/0000-0002-1164-7040" target="_blank">Jihad El-Sana</a><sup>1</sup></span>
         </div>
         
         <div class="affiliations">
@@ -391,7 +401,7 @@
             <p>The dataset is derived from a collection of 32 Aramaic incantation bowls dated to Late Antiquity (4th-7th centuries CE), comprising approximately 8,600 extracted letter-like units. Letter instances are extracted through an automatic multi-stage pipeline designed to operate consistently across bowls with diverse preservation conditions.</p>
             
             <div class="image-wrapper">
-                <img src="images/pipeline_overview2.jpg" alt="High-level overview of the extraction pipeline">
+                <img src="images/pipelineoverview2.png" alt="High-level overview of the extraction pipeline">
                 <div class="caption">Figure 1: Overview of the automated extraction pipeline mapping original artifacts to isolated glyphs.</div>
             </div>
 
