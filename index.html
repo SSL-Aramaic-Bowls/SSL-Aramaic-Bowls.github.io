@@ -391,7 +391,7 @@
         </div>
         
         <div class="action-buttons">
-            <a href="https://ssl-aramaic-bowls.github.io/" target="_blank" class="btn">Paper</a>
+            <a href="https://link.springer.com/chapter/10.1007/978-3-032-36023-6_27" target="_blank" class="btn">Paper</a>
             <a href="https://ssl-aramaic-bowls.github.io/" target="_blank" class="btn">Dataset</a>
         </div>
         
@@ -579,7 +579,25 @@
             
             <div class="citation-box">
                 <button class="copy-btn" onclick="copyCitation()">Copy</button>
-                <pre id="bibtex-text"> Coming Soon !!</pre>
+                <pre id="bibtex-text">@InProceedings{10.1007/978-3-032-36023-6_27,
+author="Atamni, Nour
+and Madi, Boraq
+and Amar, Islam
+and Saabni, Raid
+and El-Sana, Jihad",
+editor="Fink, Gernot A.
+and Forn{\'e}s, Alicia
+and Kise, Koichi
+and Lopresti, Daniel",
+title="Beyond Labels: Visual Invariance in Self-supervised Learning for Aramaic Bowls",
+booktitle="Document Analysis and Recognition -- ICDAR 2026",
+year="2027",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="467--484",
+abstract="Aramaic incantation bowls from Late Antiquity present a highly challenging visual domain characterized by severe material degradation, irregular layouts, and ambiguous letter morphology. Under such conditions, supervised learning is limited by the scarcity and instability of reliable paleographic labels. Self-supervised learning (SSL) offers an alternative to learning visual representations without explicit annotations; however, its effectiveness depends critically on the invariance assumptions encoded by data augmentations. In this work, we systematically evaluate seven SSL frameworks on a curated letter-level dataset derived from 32 Aramaic incantation bowls and organized around seven manually annotated letter classes. We formulate augmentation strategies as explicit hypotheses about visual identity: H1 (appearance-based transformations), H2 (structure-aware modifications), and H3 (historically and materially motivated degradations). Using controlled classification probes and quantitative geometric metrics, we analyze how these hypotheses shape embedding topology, cluster compactness, and inter-class separability. Our results show that the augmentation design substantially influences the quality of the representation. In particular, structural and historically grounded degradation hypotheses (H2, H3) consistently outperform appearance-only transformations (H1) and, in several cases, exert an effect comparable to or stronger than the choice of the SSL algorithm itself. These findings highlight the central role of domain-aware invariance design as an inductive bias for representation learning in degraded historical scripts. Project page: https://ssl-aramaic-bowls.github.io/.",
+isbn="978-3-032-36023-6"
+}</pre>
             </div>
         </div>
 
